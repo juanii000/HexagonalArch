@@ -33,8 +33,8 @@ class TaskServiceTest {
 
     @Test
     void createTask_ShouldReturnCreatedTask() {
-        Task task = new Task(null, "Test Task", "Test Description", false, null, null);
-        Task createdTask = new Task("1", "Test Task", "Test Description", false, LocalDateTime.now(), LocalDateTime.now());
+        Task task = new Task(null, "Test Task", "Test Description", false, null, null,"1");
+        Task createdTask = new Task("1", "Test Task", "Test Description", false, LocalDateTime.now(), LocalDateTime.now(),"1");
 
         when(taskRepository.save(any(Task.class))).thenReturn(createdTask);
 
@@ -54,7 +54,7 @@ class TaskServiceTest {
     @Test
     void getTaskById_ShouldReturnTask_WhenTaskExists() {
         String taskId = "1";
-        Task task = new Task(taskId, "Test Task", "Test Description", false, LocalDateTime.now(), LocalDateTime.now());
+        Task task = new Task(taskId, "Test Task", "Test Description", false, LocalDateTime.now(), LocalDateTime.now(),"1");
 
         when(taskRepository.findById(taskId)).thenReturn(Optional.of(task));
 
@@ -82,8 +82,8 @@ class TaskServiceTest {
     @Test
     void getAllTasks_ShouldReturnListOfTasks() {
         List<Task> tasks = Arrays.asList(
-                new Task("1", "Task 1", "Description 1", false, LocalDateTime.now(), LocalDateTime.now()),
-                new Task("2", "Task 2", "Description 2", true, LocalDateTime.now(), LocalDateTime.now())
+                new Task("1", "Task 1", "Description 1", false, LocalDateTime.now(), LocalDateTime.now(),"1"),
+                new Task("2", "Task 2", "Description 2", true, LocalDateTime.now(), LocalDateTime.now(),"2")
         );
 
         when(taskRepository.findAll()).thenReturn(tasks);
@@ -100,8 +100,8 @@ class TaskServiceTest {
     @Test
     void updateTask_ShouldReturnUpdatedTask_WhenTaskExists() {
         String taskId = "1";
-        Task existingTask = new Task(taskId, "Existing Task", "Existing Description", false, LocalDateTime.now(), LocalDateTime.now());
-        Task updatedTask = new Task(taskId, "Updated Task", "Updated Description", true, existingTask.getCreatedAt(), LocalDateTime.now());
+        Task existingTask = new Task(taskId, "Existing Task", "Existing Description", false, LocalDateTime.now(), LocalDateTime.now(),"1");
+        Task updatedTask = new Task(taskId, "Updated Task", "Updated Description", true, existingTask.getCreatedAt(), LocalDateTime.now(),"1");
 
         when(taskRepository.findById(taskId)).thenReturn(Optional.of(existingTask));
         when(taskRepository.save(any(Task.class))).thenReturn(updatedTask);
@@ -123,7 +123,7 @@ class TaskServiceTest {
     @Test
     void updateTask_ShouldThrowTaskNotFoundException_WhenTaskDoesNotExist() {
         String taskId = "1";
-        Task updatedTask = new Task(taskId, "Updated Task", "Updated Description", true, LocalDateTime.now(), LocalDateTime.now());
+        Task updatedTask = new Task(taskId, "Updated Task", "Updated Description", true, LocalDateTime.now(), LocalDateTime.now(),"1");
 
         when(taskRepository.findById(taskId)).thenReturn(Optional.empty());
 
@@ -136,7 +136,7 @@ class TaskServiceTest {
     @Test
     void deleteTask_ShouldDeleteTask_WhenTaskExists() {
         String taskId = "1";
-        Task existingTask = new Task(taskId, "Existing Task", "Existing Description", false, LocalDateTime.now(), LocalDateTime.now());
+        Task existingTask = new Task(taskId, "Existing Task", "Existing Description", false, LocalDateTime.now(), LocalDateTime.now(),"1");
 
         when(taskRepository.findById(taskId)).thenReturn(Optional.of(existingTask));
 
@@ -160,8 +160,8 @@ class TaskServiceTest {
     @Test
     void markTaskAsCompleted_ShouldReturnCompletedTask_WhenTaskExists() {
         String taskId = "1";
-        Task existingTask = new Task(taskId, "Existing Task", "Existing Description", false, LocalDateTime.now(), LocalDateTime.now());
-        Task completedTask = new Task(taskId, "Existing Task", "Existing Description", true, existingTask.getCreatedAt(), LocalDateTime.now());
+        Task existingTask = new Task(taskId, "Existing Task", "Existing Description", false, LocalDateTime.now(), LocalDateTime.now(),"1");
+        Task completedTask = new Task(taskId, "Existing Task", "Existing Description", true, existingTask.getCreatedAt(), LocalDateTime.now(),"1");
 
         when(taskRepository.findById(taskId)).thenReturn(Optional.of(existingTask));
         when(taskRepository.save(any(Task.class))).thenReturn(completedTask);
