@@ -16,5 +16,6 @@ public class Task {
     private boolean completed;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String userId;
 }
 

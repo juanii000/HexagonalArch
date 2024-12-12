@@ -54,7 +54,8 @@ public class TaskAdapter implements TaskRepository {
                 task.getDescription(),
                 task.isCompleted(),
                 task.getCreatedAt(),
-                task.getUpdatedAt()
+                task.getUpdatedAt(),
+                task.getUserId()
         );
     }
 
@@ -65,7 +66,8 @@ public class TaskAdapter implements TaskRepository {
                 taskEntity.getDescription(),
                 taskEntity.isCompleted(),
                 taskEntity.getCreatedAt(),
-                taskEntity.getUpdatedAt()
+                taskEntity.getUpdatedAt(),
+                taskEntity.getUserId()
         );
     }
 }

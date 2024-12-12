@@ -20,5 +20,6 @@ public class TaskEntity {
     private boolean completed;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String userId;
 }
 

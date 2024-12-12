@@ -33,8 +33,8 @@ class TaskAdapterTest {
 
     @Test
     void save_ShouldReturnSavedTask() {
-        Task task = new Task(null, "Test Task", "Test Description", false, null, null);
-        TaskEntity savedTaskEntity = new TaskEntity("1", "Test Task", "Test Description", false, LocalDateTime.now(), LocalDateTime.now());
+        Task task = new Task(null, "Test Task", "Test Description", false, null, null,"1");
+        TaskEntity savedTaskEntity = new TaskEntity("1", "Test Task", "Test Description", false, LocalDateTime.now(), LocalDateTime.now(),"1");
 
         when(taskRepository.save(any(TaskEntity.class))).thenReturn(savedTaskEntity);
 
@@ -54,7 +54,7 @@ class TaskAdapterTest {
     @Test
     void findById_ShouldReturnTask_WhenTaskExists() {
         String taskId = "1";
-        TaskEntity taskEntity = new TaskEntity(taskId, "Test Task", "Test Description", false, LocalDateTime.now(), LocalDateTime.now());
+        TaskEntity taskEntity = new TaskEntity(taskId, "Test Task", "Test Description", false, LocalDateTime.now(), LocalDateTime.now(),"1");
 
         when(taskRepository.findById(taskId)).thenReturn(Optional.of(taskEntity));
 
@@ -87,8 +87,8 @@ class TaskAdapterTest {
     @Test
     void findAll_ShouldReturnListOfTasks() {
         List<TaskEntity> taskEntities = Arrays.asList(
-            new TaskEntity("1", "Task 1", "Description 1", false, LocalDateTime.now(), LocalDateTime.now()),
-            new TaskEntity("2", "Task 2", "Description 2", true, LocalDateTime.now(), LocalDateTime.now())
+            new TaskEntity("1", "Task 1", "Description 1", false, LocalDateTime.now(), LocalDateTime.now(),"1"),
+            new TaskEntity("2", "Task 2", "Description 2", true, LocalDateTime.now(), LocalDateTime.now(),"2")
         );
 
         when(taskRepository.findAll()).thenReturn(taskEntities);
